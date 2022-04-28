@@ -20,7 +20,7 @@ class NotebookController extends Controller
      */
     public function index(): JsonResponse
     {
-        $notebooks = Notebook::all();
+        $notebooks = Notebook::with('notes')->get();
 
         return response()->json([
            'data' => $notebooks
@@ -57,13 +57,15 @@ class NotebookController extends Controller
      */
     public function show($id)
     {
-        $notebook = Notebook::find($id);
+        $notebook = Notebook::with('notes')->where('id', $id)->get();
         if(is_null($notebook)) {
             return response()->json([
                 'success' => false,
                'message' => 'data not found'
             ], 404);
         }
+
+        Notebook::with('notes')->where('id', $id)->get();
         return response()->json([
             'success' => true,
             'data' => $notebook

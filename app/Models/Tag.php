@@ -13,7 +13,7 @@ class Tag extends Model
 
     protected $table = 'tags';
     protected $primaryKey = 'id';
-    protected $fillable = ['title'];
+    protected $fillable = ['name'];
 
     public function notes(): BelongsToMany
     {

@@ -1,0 +1,2 @@
+#!/bin/bash
+php artisan serve --host=memoir --port=8080

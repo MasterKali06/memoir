@@ -17,7 +17,7 @@ class CreateNotesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('notebook_id');
             $table->string('title');
-            $table->longText('body');
+            $table->longText('body')->nullable();
             $table->timestamps();
 
             $table

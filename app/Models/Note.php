@@ -14,7 +14,7 @@ class Note extends Model
 
     protected $table = 'notes';
     protected $primaryKey = 'id';
-    protected $fillable = ['title', 'body', 'notebook_id', 'tag_id'];
+    protected $fillable = ['title', 'body', 'notebook_id'];
 
     public function notebook() : BelongsTo {
         return $this->belongsTo(Notebook::class);

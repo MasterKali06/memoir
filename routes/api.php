@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\NotebookController;
+use App\Http\Controllers\NoteController;
+use App\Http\Controllers\NoteTagController;
+use App\Http\Controllers\TagController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\AuthController;
@@ -22,10 +25,16 @@ Route::post('/login', [AuthController::class, 'login']);
 
 // private routes
 Route::middleware('auth:sanctum')->group(function () {
+
     Route::delete('logout', [AuthController::class, 'logout']);
 
-    //notebooks
     Route::resource('notebooks', NotebookController::class);
+    Route::resource('notes', NoteController::class);
+    Route::resource('tags', TagController::class);
+
+    Route::post('note_tag', [NoteTagController::class, 'store']);
+    Route::delete('note_tag', [NoteTagController::class, 'destroy']);
+
 
 });
 
